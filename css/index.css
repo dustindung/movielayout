@@ -1,0 +1,433 @@
+/* GLOBAL */
+
+html, body {
+    font-family: roboto condensed,sans-serif;
+}
+
+.line::after{
+    content: '';
+    width: 0;
+    height: 3px;
+    background: linear-gradient(to right,#fbbd61,#ec7532);
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    display: inline-block;
+    transition: all 0.5s;
+}
+
+/* HEADER */
+/* khi khai báo position thì liên quan đến z index */
+header{
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    z-index: 100;
+}
+#movieNavbar .navbar-nav{
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+#movieNavbar .navbar-nav .nav-item::after{
+    content: "";
+    width: 0;
+    height: 3px;
+
+    display: block;
+
+    /* #fbbd61,#ec753
+    #fbbd61: left - bắt đầu
+    #ec753: right kết thúc */
+
+    /* từ trái qua phải, to right, */
+    /* chỉ dc dùng background hoặc background-image */
+    background: linear-gradient(to right,#fbbd61,#ec7532);
+
+    transition: all 0.5s;
+}
+
+#movieNavbar .navbar-nav .nav-item:hover::after{
+    width: 100%;
+}
+
+#movieNavbar .navbar-nav .active::after {
+    width: 100%;
+}
+
+/* Movie Carousel */
+#movie-carousel .carousel-caption{
+    text-align: left;
+
+    /* cách canh giữa với position, trước đó khai thêm class con là container để set width nhỏ lại */
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%,-50%);
+}
+
+#movie-carousel .carousel-indicators li{
+    width: 10px;
+    height: 10px;
+
+    /* giúp ta không cộng thêm, border, padding và margin khi khai border-box */
+    box-sizing: border-box;
+    border: 2px solid white;
+    border-radius: 50%;
+
+    background-color: transparent;
+    opacity: 1;
+    /* background-clip là phủ content và padding, k phủ border */
+    background-clip: border-box;
+}
+
+#movie-carousel .carousel-indicators li.active{
+    background-color: white;
+}
+
+#movie-carousel .carousel-indicators{
+    justify-content: flex-start;
+
+    
+   left: 50%;
+   bottom: 100px;
+   transform: translateX(-50%);
+
+   margin: 0;
+   padding-right: 15px;
+   padding-left: 15px;
+}
+
+.carousel-item__overlay{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: linear-gradient(to top,black
+    , transparent);
+}
+
+.carousel-caption .title{
+    color: #fbbd61;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+.carousel-caption p{
+    font-size: 18px;
+    padding-right: 25%;
+}
+
+.carousel__trailer span{
+    width: 40px;
+    height: 40px;
+    border: 2px solid white;
+    line-height: 40px;
+}
+
+.btn-orange{
+    background: linear-gradient(to right,#fbbd61,#ec7532);
+    border-radius: 40px;
+    font-size: 14px;
+    letter-spacing: 2px;
+    padding: 11px 30px;
+    cursor: pointer;
+}
+
+
+
+/* newIN */
+
+
+.newIN{
+    padding-top: 80px;
+}
+
+.newIN__title{
+    color: #ec7532;
+    font-size: 18px;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding-bottom: 15px;
+    position: relative;
+}
+
+.newIN__title::after{
+    content: '';
+    width: 160px;
+    height: 3px;
+    background: linear-gradient(to right,#fbbd61,#ec7532);
+    position: absolute;
+
+    bottom: -1px;
+    left: 0;
+}
+
+.newIN .newIN__text i{
+    color: #fbbd61;
+}
+
+.newIN__img {
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    /* sẽ ẩn hết những thứ khác ngoài thẻ cha */
+}
+
+.newIN__overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(to bottom,#fbbd61,#ec7532);
+    opacity: 0.8;
+
+    transform: skewX(30deg) translateX(-130%);
+    /* skew dùng đẻ kéo, theo độ, skewX kéo theo chiều ngang */
+    transition: all 0.5s;
+}
+
+.newIN__img:hover .newIN__overlay{
+    transform: skewX(30deg) translateX(-20%);
+}
+
+.newIN__play{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%) scale(0.8);
+    left: 0;
+    width: 100%;
+    text-align: center;
+    opacity: 0;
+    transition: all 0.2s;
+}
+
+.newIN__play i{
+    width: 80px;
+    height: 80px;
+    font-size: 20px;
+    border-radius: 50%;
+    border: 2px solid white;
+    margin: 15px auto;
+    line-height: 80px;
+}
+
+.newIN__play a{
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+.newIN__play span{
+    font-size: 16px;
+    
+}
+
+.newIN__content:hover .newIN__play{
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+}
+
+.newIN__text{
+    text-align: center;
+}
+
+.newIN__movieName {
+    margin: 15px;
+}
+
+
+/* showTime */
+
+/* img-fluid là class của boostrap, giúp responsive theo thẻ cha */
+
+.showTime .nav-tabs .nav-link{
+    position: relative;
+    color: #4a4a4a;
+    padding: 10px 30px;
+}
+
+.showTime .nav-tabs .nav-link.active.line::after, .showTime .nav-tabs .nav-link:hover.line::after{
+    width: 100%;
+}
+
+.showTime .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active, .showTime .nav-tabs .nav-link:hover{
+    border: white;
+}
+
+.showTime__category, .showTime__detail a{
+    color: #ec7532;
+    letter-spacing: 2px;
+    font-size: 12px;
+}
+
+.showTime__detail h1{
+    font-size: 24px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+.showTime__min{
+    border-radius: 50px;
+    width: 33px;
+    height: 33px;
+    text-align: center;
+    line-height: 33px;
+}
+
+.showTime__list{
+    letter-spacing: 1px;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+
+
+
+
+
+
+/* CommingSoon */
+.commingSoon{
+    background-color: black;
+    position: relative;
+    
+}
+
+.commingSoon__bg{
+    background-image: url(../img/slide-3.png);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+
+}
+
+.commingSoon__content{
+    color: white;
+}
+
+.commingSoon__title{
+    color: #ec7532;
+    font-size: 18px;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid #333;;
+    padding-bottom: 15px;
+    position: relative;
+}
+
+
+
+.commingSoon__title::after{
+    content: '';
+    width: 160px;
+    height: 3px;
+    background: linear-gradient(to right,#fbbd61,#ec7532);
+    position: absolute;
+
+    bottom: -1px;
+    left: 0;
+}
+
+
+
+.commingSoon_category{
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fbbd61;
+}
+
+.commingSoon__detail h2{
+    font-size: 34px;
+    letter-spacing: 1px;
+    
+}
+
+.commingSoon__detail i{
+    font-size: 10px;
+}
+
+.comming__date {
+    font-size: 12px;
+    letter-spacing: 1px;
+    opacity: 0.7;
+}
+
+.commingSoon__star{
+    color: #fbbd61;
+    display: inline;
+}
+
+.commingSoon__moreinfo{
+    color: #ec7532;
+}
+
+/* .newIN__play{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%) scale(0.8);
+    left: 0;
+    width: 100%;
+    text-align: center;
+    opacity: 0;
+    transition: all 0.2s;
+}
+
+.newIN__play i{
+    width: 80px;
+    height: 80px;
+    font-size: 20px;
+    border-radius: 50%;
+    border: 2px solid white;
+    margin: 15px auto;
+    line-height: 80px;
+} */
+
+.comming__trailer {
+    position: relative;
+}
+
+.comming__trailer i{
+    width: 80px;
+    height: 80px;
+    font-size: 20px;
+    border-radius: 50%;
+    border: 2px solid #ec7532;
+    margin: 15px auto;
+    line-height: 80px;
+    text-align: center;
+    display: block;
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    
+    transform: translate(-50%, -50%) scale(1);
+
+    transition: all 0.5s;
+}
+
+.comming__trailer:hover i{
+    transform: scale(0.8);
+}
+
+
+
+/* RESPONSIVE */
+/* áp dụng từ 0 -> 576px */
+@media screen and (max-width:576px){
+    #myTabContent img{
+        width: 100%;
+    }
+}
+
+
+
+
+
